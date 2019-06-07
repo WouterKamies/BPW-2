@@ -24,21 +24,8 @@ public class FirstPersonController : MonoBehaviour {
 		Cursor.visible = false;
 		cameraTransform = Camera.main.transform;
 		rigidbody = GetComponent<Rigidbody> ();
+        //StartCoroutine(Sprint());
 	}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("GroundCollider"))
-        {
-            grounded = true;
-            Debug.Log("Grounded");
-        }
-        else
-        {
-            grounded = false;
-            Debug.Log("AirBorn");
-        }
-    }
 
     void Update()
     {
@@ -57,26 +44,39 @@ public class FirstPersonController : MonoBehaviour {
 	
 		if (Input.GetButtonDown("Jump"))
         {
-			if (grounded) {
-				rigidbody.AddForce(transform.up * jumpForce);
-			}
+            if (grounded)
+            {
+                rigidbody.AddForce(transform.up * jumpForce);
+            }
 		}
 		
-		//Ray ray = new Ray(transform.position, -transform.up);
-		//RaycastHit hit;
+		Ray ray = new Ray(transform.position, -transform.up);
+		RaycastHit hit;
 		
-		//if (Physics.Raycast(ray, out hit, 1 + .1f, groundedMask))
-        //{
-			//grounded = true;
-           // Debug.Log("Grounded");
-		//}
-		//else {
-			///grounded = false;
-            //Debug.Log("Airborn");
-       // }
+		if (Physics.Raycast(ray, out hit, 1 + .1f , groundedMask))
+        {
+			grounded = true;
+            Debug.Log("Grounded");
+		}
+		else {
+			grounded = false;
+            Debug.Log("Airborn");
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            //coroutine sprint();
+        }
 		
 	}
 
+    //IEnumerator Sprint ()
+    //{
+        //double speed
+        //waitforseconds
+        //normal speed
+        //cooldown
+    //}
     
 
     void FixedUpdate() {
