@@ -9,6 +9,7 @@ TagManager:
   - Gravity
   - Friendly Planet
   - GroundCollider
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - PostProcessing
   - Ground
   - Colliders
-  - 
+  - Interaction
   - 
   - 
   - 

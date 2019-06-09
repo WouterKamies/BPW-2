@@ -65,17 +65,17 @@ public class FirstPersonController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //coroutine sprint();
+            //StartCoroutine (Sprint());
         }
 		
 	}
 
     //IEnumerator Sprint ()
     //{
-        //double speed
-        //waitforseconds
-        //normal speed
-        //cooldown
+        //walkSpeed = walkSpeed * 2;
+        //yield return new WaitForSeconds(8);
+        //walkSpeed = walkSpeed / 2;
+        //yield return new WaitForSeconds(15);
     //}
     
 
