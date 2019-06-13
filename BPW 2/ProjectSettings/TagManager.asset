@@ -10,6 +10,7 @@ TagManager:
   - Friendly Planet
   - GroundCollider
   - Object
+  - Meteor
   layers:
   - Default
   - TransparentFX

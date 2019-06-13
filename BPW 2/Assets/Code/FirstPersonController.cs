@@ -56,11 +56,11 @@ public class FirstPersonController : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit, 1 + .1f , groundedMask))
         {
 			grounded = true;
-            Debug.Log("Grounded");
+            //Debug.Log("Grounded");
 		}
 		else {
 			grounded = false;
-            Debug.Log("Airborn");
+            //Debug.Log("Airborn");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
