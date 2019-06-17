@@ -11,6 +11,7 @@ TagManager:
   - GroundCollider
   - Object
   - Meteor
+  - Radio
   layers:
   - Default
   - TransparentFX

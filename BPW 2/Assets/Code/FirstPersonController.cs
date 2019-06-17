@@ -9,6 +9,7 @@ public class FirstPersonController : MonoBehaviour {
 	public float walkSpeed = 6;
 	public float jumpForce = 220;
 	public LayerMask groundedMask;
+    public gameManager gameManager;
 	
 	bool grounded;
 	Vector3 moveAmount;
@@ -24,7 +25,6 @@ public class FirstPersonController : MonoBehaviour {
 		Cursor.visible = false;
 		cameraTransform = Camera.main.transform;
 		rigidbody = GetComponent<Rigidbody> ();
-        //StartCoroutine(Sprint());
 	}
 
     void Update()
@@ -32,7 +32,7 @@ public class FirstPersonController : MonoBehaviour {
 		
 		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivityX);
 		verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-60,60);
+		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-60,75);
 		cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 		
 		float inputX = Input.GetAxisRaw("Horizontal");
@@ -56,28 +56,20 @@ public class FirstPersonController : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit, 1 + .1f , groundedMask))
         {
 			grounded = true;
-            //Debug.Log("Grounded");
 		}
 		else {
 			grounded = false;
-            //Debug.Log("Airborn");
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            //StartCoroutine (Sprint());
-        }
-		
 	}
 
-    //IEnumerator Sprint ()
-    //{
-        //walkSpeed = walkSpeed * 2;
-        //yield return new WaitForSeconds(8);
-        //walkSpeed = walkSpeed / 2;
-        //yield return new WaitForSeconds(15);
-    //}
-    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Meteor"))
+        {
+            gameManager.playerDeath();
+            gameManager.meteorRainStop();
+        }
+    }
 
     void FixedUpdate() {
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
