@@ -519,7 +519,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 19.216667
+  - time: 20.366667
     functionName: commenceBeaming
     data: 
     objectReferenceParameter: {fileID: 0}

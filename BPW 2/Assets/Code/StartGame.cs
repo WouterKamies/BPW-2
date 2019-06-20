@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     public GameObject fadeout;
+    public AudioSource select;
 
     void Update()
     {
@@ -18,6 +19,7 @@ public class StartGame : MonoBehaviour
 
     IEnumerator loadLevel()
     {
+        select.Play();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Level");
     }

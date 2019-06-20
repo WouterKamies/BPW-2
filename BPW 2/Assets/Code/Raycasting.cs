@@ -7,9 +7,19 @@ public class Raycasting : MonoBehaviour
     private GameObject raycastedObj;
     public GameObject item;
     public gameManager gameManager;
+    public GameObject button;
+    public AudioSource radioSound;
 
-     public int rayLength = 10;
-     public LayerMask Interaction;
+    public int rayLength = 10;
+    public LayerMask Interaction;
+
+    public Material on;
+    public Material off;
+
+    private void Awake()
+    {
+        button.GetComponent<Renderer>().material = off;
+    }
 
     private void Update()
     {
@@ -24,10 +34,11 @@ public class Raycasting : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    raycastedObj.SetActive(false);
+                    radioSound.Play();
+                    button.GetComponent<Renderer>().material = on;
                     item.SetActive(true);
                     gameManager.buddyDialogue();
-
+                    
                 }
             }
         }
