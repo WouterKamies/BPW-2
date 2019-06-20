@@ -10,6 +10,7 @@ public class PauseScreen : MonoBehaviour
     public GameObject cameraScript;
     public GameObject lookingScript;
     public GameObject crossHair;
+    public AudioSource music;
 
     private void Update()
     {
@@ -38,6 +39,7 @@ public class PauseScreen : MonoBehaviour
         cameraScript.GetComponent<Raycasting>().enabled = true;
         lookingScript.GetComponent<FirstPersonController>().enabled = true;
         crossHair.SetActive(true);
+        music.UnPause();
     }
 
     void Pause()
@@ -50,6 +52,8 @@ public class PauseScreen : MonoBehaviour
         cameraScript.GetComponent<Raycasting>().enabled = false;
         lookingScript.GetComponent<FirstPersonController>().enabled = false;
         crossHair.SetActive(false);
+        music.Pause();
+
     }
 
     public void backToMain()

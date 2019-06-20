@@ -11,15 +11,15 @@ public class gameManager : MonoBehaviour
     public GameObject spawner;
     public GameObject signalUI;
     public GameObject noSignalUI;
-    public GameObject buddy;
     public GameObject timer;
     public GameObject beam;
     public GameObject fadeToWhiteUI;
     public GameObject interfaceUI;
+    public GameObject firstContact;
+    public GameObject secondContact;
 
     void Awake()
     {
-        startUI.SetActive(true);
         spawner.SetActive(false);
         timer.GetComponent<countDown>().enabled = false;
         timer.SetActive(false);
@@ -50,19 +50,12 @@ public class gameManager : MonoBehaviour
     public void meteorRainStop()
     {
         spawner.SetActive(false);
+        StartCoroutine(afterStorm());
     }
 
     public void buddyDialogue()
     {
         StartCoroutine(firstDialogue());
-    }
-
-    public void levelComplete()
-    {
-        timer.GetComponent<countDown>().enabled = false;
-        timer.SetActive(false);
-        Debug.Log("You survived");
-        beamMeUp();
     }
 
     public void beamMeUp()
@@ -76,7 +69,7 @@ public class gameManager : MonoBehaviour
         beam.SetActive(true);
         beam.GetComponent<Animator>().enabled = true;
         fadeToWhiteUI.SetActive(true);
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(12);
         beam.SetActive(false);
         interfaceUI.GetComponent<Animator>().enabled = true;
     }
@@ -86,7 +79,13 @@ public class gameManager : MonoBehaviour
         noSignalUI.SetActive(false);
         signalUI.SetActive(true);
         yield return new WaitForSeconds(2);
-        Debug.Log("Buddy talks");
-        meteorRainStart();
+        firstContact.SetActive(true);
+    }
+
+    IEnumerator afterStorm()
+    {
+        timer.SetActive(false);
+        yield return new WaitForSeconds(10);
+        secondContact.SetActive(true);
     }
 }

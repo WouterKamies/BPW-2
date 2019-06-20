@@ -5,11 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
+    public GameObject fadeout;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Level");
+            fadeout.SetActive(true);
+            StartCoroutine(loadLevel());
         }
+    }
+
+    IEnumerator loadLevel()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Level");
     }
 }

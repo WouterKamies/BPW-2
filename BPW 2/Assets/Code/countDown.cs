@@ -22,8 +22,12 @@ public class countDown : MonoBehaviour
         if (timeLeft <= 0)
         {
             StopCoroutine("LoseTime");
+            //gameManager.levelComplete();
+        }
+
+        if (timeLeft == 3)
+        {
             gameManager.meteorRainStop();
-            gameManager.levelComplete();
         }
     }
 
