@@ -40,6 +40,11 @@ public class gameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void meteorRainStart()
     {
         spawner.SetActive(true);

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FadeBlack : MonoBehaviour
 {
-    public GameObject fadetoblackUI;
+    public gameManager gameManager;
     public GameObject player;
     public GameObject canvas;
 
-    public void FadeToBlack()
+    public void load ()
     {
-        fadetoblackUI.SetActive(true);
+        gameManager.LoadCredits();
         player.GetComponent<FirstPersonController>().enabled = false;
         canvas.GetComponent<PauseScreen>().enabled = false;
     }
